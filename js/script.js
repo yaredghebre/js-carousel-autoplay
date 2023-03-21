@@ -31,7 +31,7 @@ arrayItems[activeItemIndex].classList.add("active");
 
 // Gestisco bottone next (basso) e gli assegno EventListener per il click
 nextBtn.addEventListener("click", function () {
-    
+    clearInterval(interval);
     // rimuovo la classe "active" per passare alla slide successiva 
     arrayItems[activeItemIndex].classList.remove("active");
 
@@ -45,12 +45,13 @@ nextBtn.addEventListener("click", function () {
     // una volta passato alla slide successivo, gli assegno classe "active"
     arrayItems[activeItemIndex].classList.add("active");
     console.log(arrayItems);
-
+    setInterval(autoPlay, 3000);
 });
 
 
 // Gestisco bottone prev (alto) e gli assegno EventListener per il click
 prevBtn.addEventListener("click", function () {
+    clearInterval(interval);
     // rimuovo la classe "hidden" per passare alla slide successiva 
     nextBtn.classList.remove("hidden");
 
@@ -65,7 +66,7 @@ prevBtn.addEventListener("click", function () {
     
     // una volta passato alla slide precedente, gli assegno classe "active"
     arrayItems[activeItemIndex].classList.add("active");
-
+    setInterval(autoPlay, 3000);    
 });
 
 // FUNZIONI
@@ -92,4 +93,15 @@ console.log(arrayItems[activeItemIndex]);
 
 }
 
+function stopCarousel() {
+    clearInterval(interval);
+}
 
+document.querySelector(".slider-items").addEventListener("mouseover", stopCarousel);
+
+
+function restartCarousel() {
+    setInterval(autoPlay, 3000);
+}
+
+document.querySelector(".slider-items").addEventListener("mouseout", restartCarousel);
