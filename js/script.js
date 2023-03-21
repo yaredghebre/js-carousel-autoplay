@@ -27,27 +27,25 @@ const prevBtn = document.querySelector(".prev");
 
 let activeItemIndex = 0;
 arrayItems[activeItemIndex].classList.add("active");
-prevBtn.classList.add("hidden");
 
 
 // Gestisco bottone next (basso) e gli assegno EventListener per il click
 nextBtn.addEventListener("click", function () {
-    prevBtn.classList.remove("hidden");
+    
     // rimuovo la classe "active" per passare alla slide successiva 
     arrayItems[activeItemIndex].classList.remove("active");
 
+    if(activeItemIndex === arrayItems.length-1) {
+        activeItemIndex = 0;
+    } else {
     // passo alla slide successiva
-    activeItemIndex++;
-
+        activeItemIndex++;
+    }
+    
     // una volta passato alla slide successivo, gli assegno classe "active"
     arrayItems[activeItemIndex].classList.add("active");
     console.log(arrayItems);
 
-    // creo condizione if per stabilire la "fine" delle slide con il -1
-    if (activeItemIndex === arrayItems.length - 1) {
-        nextBtn.classList.add("hidden");
-
-    }
 });
 
 
@@ -58,27 +56,40 @@ prevBtn.addEventListener("click", function () {
 
     arrayItems[activeItemIndex].classList.remove("active");
 
+    if(activeItemIndex === 0) {
+        activeItemIndex = arrayItems.length-1;
+    } else {
     // passo alla slide precedente
-    activeItemIndex--;
-
+        activeItemIndex--;
+    }
+    
     // una volta passato alla slide precedente, gli assegno classe "active"
     arrayItems[activeItemIndex].classList.add("active");
 
-        // creo condizione if per stabilire "inizio" delle slide senza lo 0 (prima slide con)
-        if (activeItemIndex === 0) {
-            prevBtn.classList.add("hidden");
-        }
 });
 
 // FUNZIONI
 
-// let interval = setInterval(autoPlay, 3000)
+let interval = setInterval(autoPlay, 3000)
 
-// function autoPlay() {
+function autoPlay() {
     
-//     if(activeItemIndex < arrayImages.length -1) {
-//         activeItemIndex++;
-//     } else {
-//         activeItemIndex = 0
-//     }
-// }
+    prevBtn.classList.remove("hidden");
+    // rimuovo la classe "active" per passare alla slide successiva 
+    arrayItems[activeItemIndex].classList.remove("active");
+
+    if(activeItemIndex === arrayItems.length-1) {
+        activeItemIndex = 0;
+    } else {
+        activeItemIndex++;
+    }
+    // una volta passato alla slide successivo, gli assegno classe "active"
+    arrayItems[activeItemIndex].classList.add("active");
+    console.log(arrayItems);
+
+
+console.log(arrayItems[activeItemIndex]);
+
+}
+
+
