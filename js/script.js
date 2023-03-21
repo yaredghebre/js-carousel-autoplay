@@ -1,30 +1,34 @@
-// Creo un array con le immagini
+// Al carousel fatto precedentemente aggiungere funzionalità di autoplay: dopo un certo periodo di tempo (3 secondi) 
+// l’immagine attiva dovrà cambiare alla successiva.
+// Bonus 1:
+// Gestire il tempo di autoplay dopo il click dell'utente, rimettendo il timer di 3 secondi dopo il click per avere autoplay sempre regolare.
+// Bonus2:
+// Stoppare autoplay all'hover sullo slider e farlo ripartire al togliere del hover. Qui potrebbe servire un po di ricerca per trovare l'evento giusto 
+
+// Definisco variabili TIMING
+
+
 const arrayImages = ["img/01.jpg", "img/02.jpg", "img/03.jpg", "img/04.jpg", "img/05.jpg"];
-// Richiamo dal DOM con querySelector
 const itemsContainer = document.querySelector (".slider-items");
-console.log(itemsContainer);
-// Creo ciclo for per mostrare le slide
+
+
 for (let i = 0;  i < arrayImages.length; i++) {
     const currentImage = arrayImages [i];
     console.log(currentImage);
 // Concateno con un template literal assegnato a una variabile
     const sliderItems = `<div class="item"> <img src="${currentImage}"> </div>`;
-// Mostro in pagina le slide (sequenza usando +=)
     itemsContainer.innerHTML += sliderItems;
 }
 
 // Immagine di partenza
-// Prelevo il container 
 const arrayItems = document.getElementsByClassName("item");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 
-console.log(arrayItems);
-
-// Creo variabile da accodare a array e uso classList per usare la classe su immagine corrente
 let activeItemIndex = 0;
 arrayItems[activeItemIndex].classList.add("active");
 prevBtn.classList.add("hidden");
+
 
 // Gestisco bottone next (basso) e gli assegno EventListener per il click
 nextBtn.addEventListener("click", function () {
@@ -66,4 +70,15 @@ prevBtn.addEventListener("click", function () {
         }
 });
 
+// FUNZIONI
 
+// let interval = setInterval(autoPlay, 3000)
+
+// function autoPlay() {
+    
+//     if(activeItemIndex < arrayImages.length -1) {
+//         activeItemIndex++;
+//     } else {
+//         activeItemIndex = 0
+//     }
+// }
